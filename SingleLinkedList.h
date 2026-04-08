@@ -11,5 +11,19 @@ private:
 public:
 	SingleLinkedList() : size(0) {}
 
+	void push_back(const T& value) {
+		shared_ptr<SingleNode<T>> newNode = make_shared<SingleNode<T>>(value);
+
+		if (size == 0) {
+			head = newNode;
+			tail = head;
+			size++;
+			return;
+		}
+
+		tail->next = newNode;
+		tail = tail->next;
+
+	}
 
 };
