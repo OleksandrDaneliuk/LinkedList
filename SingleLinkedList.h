@@ -42,6 +42,14 @@ public:
 		head = newNode;
 	}
 
+	void pop_front() {
+		shared_ptr<SingleNode<T>> temp = this->head;
+
+		head = head->next;
+
+		temp.reset();
+	}
+
 	friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& obj) {
 		auto node = obj.head;
 		if (obj.size == 0) {
