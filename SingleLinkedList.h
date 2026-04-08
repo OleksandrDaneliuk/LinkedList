@@ -21,6 +21,7 @@ public:
 			return;
 		}
 
+		size++;
 		tail->next = newNode;
 		tail = tail->next;
 
@@ -36,9 +37,25 @@ public:
 			return;
 		}
 
+		size++;
 		newNode->next = head;
 		head = newNode;
+	}
 
+	friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& obj) {
+		auto node = obj.head;
+		if (obj.size == 0) {
+			os << "[]";
+			return os;
+		}
+
+		os << "[";
+		while (node->next) {
+			os << node->value << ", ";
+			node = node->next;
+		}
+		os << node->value << "]";
+		return os;
 	}
 
 };
