@@ -89,6 +89,19 @@ public:
 		return temp->value;
 	}
 
+	int find(const T& value) const {
+		shared_ptr<SingleNode<T>> temp = this->head;
+		int index = 0;
+
+		while (temp) {
+			if (temp->value == value) return index;
+			index++;
+			temp = temp->next;
+		}
+		
+		return -1;
+	}
+
 	friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& obj) {
 		auto node = obj.head;
 		if (obj.size == 0) {
