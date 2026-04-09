@@ -76,6 +76,10 @@ public:
 		return this->size;
 	}
 
+	bool empty() const {
+		return size == 0;
+	}
+
 	friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& obj) {
 		auto node = obj.head;
 		if (obj.size == 0) {
