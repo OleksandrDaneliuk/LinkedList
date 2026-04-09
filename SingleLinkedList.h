@@ -102,6 +102,30 @@ public:
 		return -1;
 	}
 
+	void insertAt(const size_t index, const T& value) {
+		if (index >= size || index < 0) {
+			throw runtime_error("Out of range list");
+		}
+
+		if (index == 0) {
+			push_front(value);
+			return;
+		}
+
+		if (index == size - 1) {
+			push_back(value);
+			return;
+		}
+		shared_ptr<SingleNode<T>> temp = this->head;
+
+		for (int i = 0; i != index-1; i++, temp = temp->next);
+
+		shared_ptr<SingleNode<T>> newNode = make_shared<SingleNode<T>>(value);
+		
+		newNode->next = temp->next;
+		temp->next = newNode;
+	}
+
 	friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& obj) {
 		auto node = obj.head;
 		if (obj.size == 0) {
