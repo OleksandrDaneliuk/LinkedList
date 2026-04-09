@@ -44,10 +44,9 @@ public:
 
 	void pop_front() {
 		shared_ptr<SingleNode<T>> temp = this->head;
-
 		head = head->next;
-
 		temp.reset();
+		size--;
 	}
 
 	friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& obj) {
