@@ -80,6 +80,15 @@ public:
 		return size == 0;
 	}
 
+	T& operator[](const size_t index) {
+		if (index >= size || index < 0) {
+			throw runtime_error("Out of range list");
+		}
+		shared_ptr<SingleNode<T>> temp = this->head;
+		for (int i = 0; i != index; i++, temp = temp->next);
+		return temp->value;
+	}
+
 	friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& obj) {
 		auto node = obj.head;
 		if (obj.size == 0) {
