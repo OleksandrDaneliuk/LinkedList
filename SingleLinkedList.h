@@ -68,8 +68,14 @@ public:
 			tail.reset();
 			temp->next.reset();
 			tail = temp;
+			size--;
 		}
 	}
+
+	size_t length() const {
+		return this->size;
+	}
+
 	friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& obj) {
 		auto node = obj.head;
 		if (obj.size == 0) {
