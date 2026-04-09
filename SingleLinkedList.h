@@ -43,12 +43,33 @@ public:
 	}
 
 	void pop_front() {
-		shared_ptr<SingleNode<T>> temp = this->head;
-		head = head->next;
-		temp.reset();
-		size--;
+		if (size > 0) {
+			shared_ptr<SingleNode<T>> temp = this->head;
+			head = head->next;
+			temp.reset();
+			size--;
+		}
 	}
 
+
+	void pop_back() {
+		if (size > 0) {
+			if (size == 1) {
+				tail.reset();
+				head.reset();
+				size--;
+				return;
+			}
+			shared_ptr<SingleNode<T>> temp = this->head;
+			while (temp->next != tail) {
+				temp = temp->next;
+			}
+
+			tail.reset();
+			temp->next.reset();
+			tail = temp;
+		}
+	}
 	friend std::ostream& operator<<(std::ostream& os, const SingleLinkedList& obj) {
 		auto node = obj.head;
 		if (obj.size == 0) {
